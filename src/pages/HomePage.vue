@@ -13,8 +13,9 @@ export default {
 </script>
 
 <template>
-  <h1 class="text-center">Homepage</h1>
-  <PostList/>
+  <div class="container py-2">
+    <PostList/>
+  </div>
 </template>
 
 <style lang="scss" scoped></style>

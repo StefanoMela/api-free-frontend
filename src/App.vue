@@ -9,7 +9,9 @@ export default {
 </script>
 
 <template>
-  <RouterView />
+  <div class="container">
+    <RouterView />
+  </div>
 </template>
 
 <style lang="scss" scoped></style>
