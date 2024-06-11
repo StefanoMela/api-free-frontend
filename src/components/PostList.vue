@@ -1,24 +1,29 @@
 <script>
-import { api } from "../services/api";
-import { store } from "../data/store";
+import axios from "axios";
 
 export default {
   data() {
     return {
-      store,
+      apiUri: "http://localhost:3000/posts",
+      posts: [],
     };
   },
   methods: {
-    async loadPosts() {
-      try {
-        await api.fetchPosts(); // Chiama la funzione fetchPosts del servizio API
-      } catch (error) {
-        console.error("Error loading posts:", error);
-      }
+    async fetchPosts() {
+        try {
+          const response = await axios.get(this.apiUri);
+          const postsArray = response.data.data; 
+          this.posts = postsArray;
+          return this.posts;
+
+        } catch (error) {
+          console.error('Errore', error);
+          throw error;
+        }
+      },
     },
-  },
   mounted() {
-    this.loadPosts();
+    this.fetchPosts();
   },
 };
 </script>
@@ -26,10 +31,14 @@ export default {
 <template>
   <div>
     <h1>Posts</h1>
-    <ul>
-      <li v-for="post in store.posts" :key="post.id">{{ post.title }}</li>
-      <button @click="loadPosts">Load Posts</button>
-    </ul>
+    <div v-for="post in posts" :key="post.id">
+      <h2>{{ post.title }}</h2>
+      <p>{{ post.content }}</p>
+      <p><b>Autore:</b> {{ post.user.name }}</p>
+      <p><b>Categoria:</b> {{ post.category.name }}</p>
+      <p><b>Tags:</b> {{ post.tags.map((tag) => tag.name).join(", ") }}</p>
+      <img >
+    </div>
   </div>
 </template>
 
