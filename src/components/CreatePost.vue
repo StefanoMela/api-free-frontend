@@ -43,7 +43,7 @@ export default {
         await api.createPost(newPost);
         this.$router.push("/"); // Reindirizza alla pagina Home dopo la creazione del post
       } catch (error) {
-        console.error("Error creating post:", error);
+        console.error("Error nella creazione del post:", error);
       }
     },
     async loadCategories() {
@@ -51,7 +51,7 @@ export default {
         const response = await api.fetchCategories();
         this.categories = response;
       } catch (error) {
-        console.error("Error fetching categories:", error);
+        console.error("Errore in categories", error);
       }
     },
     async loadTags() {
@@ -59,7 +59,7 @@ export default {
         const response = await api.fetchTags();
         this.allTags = response;
       } catch (error) {
-        console.error("Error fetching tags:", error);
+        console.error("Error in tags:", error);
       }
     },
   },
@@ -71,44 +71,36 @@ export default {
 </script>
 
 <template>
-  <div>
-    <h1>Create a New Post</h1>
+  <div class="container mt-5">
+    <h1 class="mb-4">Create a New Post</h1>
     <form @submit.prevent="submitPost">
-      <div>
-        <label for="title">Title:</label>
-        <input v-model="title" type="text" id="title" required />
+      <div class="mb-3">
+        <label for="title" class="form-label">Title:</label>
+        <input v-model="title" type="text" id="title" class="form-control" required />
       </div>
-      <div>
-        <label for="content">Content:</label>
-        <textarea v-model="content" id="content" required></textarea>
+      <div class="mb-3">
+        <label for="content" class="form-label">Content:</label>
+        <textarea v-model="content" id="content" class="form-control" required></textarea>
       </div>
-      <div>
-        <label for="image">Image URL:</label>
-        <input v-model="image" type="url" id="image" required />
+      <div class="mb-3">
+        <label for="image" class="form-label">Image URL:</label>
+        <input v-model="image" type="url" id="image" class="form-control" required />
       </div>
-      <div>
-        <label for="category">Category:</label>
-        <select v-model="categoryId" id="category" required>
-          <option v-for="cat in categories" :key="cat.id" :value="cat.id">
-            {{ cat.name }}
-          </option>
+      <div class="mb-3">
+        <label for="category" class="form-label">Category:</label>
+        <select v-model="categoryId" id="category" class="form-select" required>
+          <option v-for="cat in categories" :key="cat.id" :value="cat.id">{{ cat.name }}</option>
         </select>
       </div>
-      <div>
-        <label for="tags">Tags:</label>
-        <input
-          v-model="tags"
-          type="text"
-          id="tags"
-          placeholder="Comma-separated tags"
-          required
-        />
+      <div class="mb-3">
+        <label for="tags" class="form-label">Tags:</label>
+        <input v-model="tags" type="text" id="tags" class="form-control" placeholder="Comma-separated tags" required />
       </div>
-      <div>
-        <label for="published">Published:</label>
-        <input v-model="published" type="checkbox" id="published" />
+      <div class="mb-3 form-check">
+        <input v-model="published" type="checkbox" id="published" class="form-check-input" />
+        <label class="form-check-label" for="published">Published</label>
       </div>
-      <button type="submit">Create Post</button>
+      <button type="submit" class="btn btn-primary">Create Post</button>
     </form>
   </div>
 </template>
