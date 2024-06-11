@@ -1,15 +1,16 @@
 <script>
-import { RouterView } from 'vue-router';
+import CreatePost from "../components/CreatePost.vue";
 
 export default {
+  name: "NewPost",
   components: {
-    RouterView,
+    CreatePost,
   },
 };
 </script>
 
 <template>
-  <RouterView />
+  <CreatePost />
 </template>
 
 <style lang="scss" scoped></style>

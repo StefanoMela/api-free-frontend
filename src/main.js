@@ -7,7 +7,7 @@ import "./assets/scss/style.scss";
 import * as bootstrap from "bootstrap";
 
 // IMPORT ROUTER
-import {router} from './router/index.js';
+import {router} from '../router/index.js';
 
 import App from './App.vue'
 
