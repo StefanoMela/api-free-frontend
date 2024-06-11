@@ -2,6 +2,12 @@
 import PostList from "./components/PostList.vue";
 
 export default {
+  data() {
+    return {
+      title: "Hello world"
+    }
+  }
+
   components: {
     PostList,
   },
@@ -9,7 +15,7 @@ export default {
 </script>
 
 <template>
-  <PostList />
+  <h1>{{ title }}</h1>
 </template>
 
 <style lang="scss" scoped></style>
